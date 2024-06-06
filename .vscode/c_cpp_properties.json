@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/msys64/mingw64/include/GL",
+                "C:/msys64/mingw64/include/c++/14.1.0"
+            ],
+            "defines": [],
+            "windowsSdkVersion": "10.0.17763.0",
+            "compilerPath": "C:/msys64/mingw64/bin/gcc.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "${default}"
+        }
+    ],
+    "version": 4
+}
