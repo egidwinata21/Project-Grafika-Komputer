@@ -348,8 +348,8 @@ void room()
     glBindTexture(GL_TEXTURE_2D, textureDinding);
     // right wall
     glPushMatrix();
-    glTranslatef(-1.5,-1,.5);
-    glScalef(5, 2, 0.1);
+    glTranslatef(-1.5,-1,3.3);
+    glScalef(2.5, 2, 0.001);
     //drawCube1(1, 0.8, 0.5,  0.5,0.4,0.25);
     drawCube1(1, 0.8, 0.7,  0.5, 0.4, 0.35, 3.5,4);
     glPopMatrix();
@@ -391,25 +391,57 @@ void room()
     glPopMatrix();
 }
 
+void door(){
+    glPushMatrix();
+    glTranslatef(0,-0.2,3.2);
+    glScalef(0.4, 1.05, 0.06);
+    drawCube1(0.3,0.2,0.2,  0.25, 0.1, 0.1 );
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0.15,1.8,3.15);
+    glScalef(0.3, 0.3, 0.1);
+    drawCube1(0.2,0.2,0.2,  0.25, 0.1, 0.1 );
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0.15,0,3.15);
+    glScalef(0.3, 0.5, 0.1);
+    drawCube1(0.2,0.2,0.2,  0.25, 0.1, 0.1 );
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(1.1,1.65,3.15);
+    glScalef(0.02, 0.02, 0.01);
+    drawSphere(0.2,0.1,0.1,  0.1, 0.05, 0.05,  10);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(1.1,1.65,3.4);
+    glScalef(0.02, 0.02, 0.01);
+    drawSphere(0.2,0.1,0.1,  0.1, 0.05, 0.05,  10);
+    glPopMatrix();
+}
+
 void bed()
 {
     //bed headboard
     glPushMatrix();
     glScalef(0.1, 0.5, 0.9);
-    glTranslatef(-2,-0.5,1.2);
+    glTranslatef(-10,-0.5,8.2);
     drawCube1(0.5,0.2,0.2,  0.25,0.1,0.1);
     glPopMatrix();
 
     //bed body
     glPushMatrix();
     glScalef(1, 0.2, 0.9); //1, 0.2, 0.9
-    glTranslatef(0,-0.5,1.2);
+    glTranslatef(-1,-0.5,8.2);
     drawCube1(0.824, 0.706, 0.549,   0.412,0.353,0.2745);
     glPopMatrix();
 
     //pillow right far
     glPushMatrix();
-    glTranslatef(0.5,0.5,2.5);
+    glTranslatef(-0.4,0.5,9);
     glRotatef(22, 0,0,1);
     glScalef(0.1, 0.15, 0.28);
     drawCube1(0.627, 0.322, 0.176,  0.3135,0.161,0.088);
@@ -417,7 +449,7 @@ void bed()
 
     //pillow left near
     glPushMatrix();
-    glTranslatef(0.5,0.5,1.5);
+    glTranslatef(-0.4,0.5,8);
     glRotatef(22, 0,0,1);
     glScalef(0.1, 0.15, 0.28);
     drawCube1(0.627, 0.322, 0.176,  0.3135,0.161,0.088);
@@ -425,7 +457,7 @@ void bed()
 
     //blanket
     glPushMatrix();
-    glTranslatef(1.4,0.45,1);
+    glTranslatef(0.5,0.45,7.3);
     //glRotatef(0, 0,0,1);
     glScalef(0.5, 0.05, 0.95);
     drawCube1(0.627, 0.322, 0.176,  0.3135,0.161,0.088);
@@ -433,7 +465,7 @@ void bed()
 
     //blanket side left part
     glPushMatrix();
-    glTranslatef(1.4,-0.3,2);
+    glTranslatef(0.5,-0.3,10);
     //glRotatef(0, 0,0,1);
     glScalef(0.5, 0.25, 0.05);
     drawCube1(0.627, 0.322, 0.176,  0.3135,0.161,0.088);
@@ -446,7 +478,7 @@ void lamp()
 {
     // Lamp base
     glPushMatrix();
-    glTranslatef(.5, 0.02, 8.85);  // Place the base on the floor
+    glTranslatef(0.1, 0.02, 10.85);  // Place the base on the floor
     glScalef(0.07, 0.04, 0.07);
     drawCube1(1, 1, 0, 0, 0, 0.5);
     glPopMatrix();
@@ -454,7 +486,7 @@ void lamp()
     // Lamp stand
     glColor3f(1, 1, 0);
     glPushMatrix();
-    glTranslatef(.6, 0.12, 8.95);  // Adjust translation to connect the base to the stand
+    glTranslatef(0.2, 0.12, 10.95);  // Adjust translation to connect the base to the stand
     glScalef(0.01, 0.5, 0.01);     // Adjust height to make the stand taller
     drawCube1(1, 0, 0, 0.5, 0.0, 0.0);
     glPopMatrix();
@@ -462,187 +494,107 @@ void lamp()
     // Lamp shade
 	glColor3f(1, 1, 0);
     glPushMatrix();
-    glTranslatef(.5, 1.5, 8.85);  // Position the shade on top of the stand
+    glTranslatef(0.1, 1.5, 10.85);  // Position the shade on top of the stand
     glScalef(0.08, 0.09, 0.08);
 	drawTrapezoid(1, 1, 0, 0, 0, 0.2725);
     //drawCube1(0.000, 0.000, 0.545,  0,0,0.2725);
     glPopMatrix();
 }
 
-
-void cupboard()
+void wardrobe()
 {
     //Cupboard/lemari ************************************************************
 
         //cupboard
     glPushMatrix();
-    glTranslatef(4,0,4.4);
+    glTranslatef(4,0,3.5);
     glScalef(0.5, 1, 0.5);
     drawCube1(0.5,0.2,0.2,  0.25, 0.1, 0.1 );
     glPopMatrix();
 
     //cupboard's 1st vertical stripline
     glPushMatrix();
-    glTranslatef(4,1,5.9);
+    glTranslatef(4,1,5);
     glScalef(0.5, 0.01, 0.0001);
     drawCube1(0.2,0.1,0.1,  0.1, 0.05, 0.05);
     glPopMatrix();
 
     //cupboard's 2nd vertical stripline
     glPushMatrix();
-    glTranslatef(4,0.5,5.9);
+    glTranslatef(4,0.5,5);
     glScalef(0.5, 0.01, 0.0001);
     drawCube1(0.2,0.1,0.1,  0.1, 0.05, 0.05);
     glPopMatrix();
 
     //cupboard's last stripline
     glPushMatrix();
-    glTranslatef(4,0,5.9);
+    glTranslatef(4,0,5);
     glScalef(0.5, 0.01, 0.0001);
     drawCube1(0.2,0.1,0.1,  0.1, 0.05, 0.05);
     glPopMatrix();
 
     //cupboard's lst horizontal stripline
     glPushMatrix();
-    glTranslatef(5.5,0,5.9);
+    glTranslatef(5.5,0,5);
     glScalef(0.01, 1, 0.0001);
     drawCube1(0.2,0.1,0.1,  0.1, 0.05, 0.05);
     glPopMatrix();
 
     //cupboard's right side horizontal stripline
     glPushMatrix();
-    glTranslatef(4.75,1,5.9);
+    glTranslatef(4.75,1,5);
     glScalef(0.01, 0.67, 0.0001);
     drawCube1(0.2,0.1,0.1,  0.1, 0.05, 0.05);
     glPopMatrix();
 
     //cupboard's left side horizontal stripline
     glPushMatrix();
-    glTranslatef(4,0,5.9);
+    glTranslatef(4,0,5);
     glScalef(0.01, 1, 0.0001);
     drawCube1(0.2,0.1,0.1,  0.1, 0.05, 0.05);
     glPopMatrix();
 
     //cupboard's handle right
     glPushMatrix();
-    glTranslatef(5,1.4,5.9);
+    glTranslatef(5,1.4,5);
     glScalef(0.02, 0.18, 0.01);
     drawCube1(0.2,0.1,0.1,  0.1, 0.05, 0.05);
     glPopMatrix();
 
     //cupboard's handle right sphere
     glPushMatrix();
-    glTranslatef(5.02,1.9,5.91);
+    glTranslatef(5.02,1.9,5.01);
     glScalef(0.02, 0.02, 0.01);
     drawSphere(0.2,0.1,0.1,  0.1, 0.05, 0.05,  10);
     glPopMatrix();
 
     //cupboard's handle left
     glPushMatrix();
-    glTranslatef(4.5,1.4,5.9);
+    glTranslatef(4.5,1.4,5);
     glScalef(0.02, 0.18, 0.01);
     drawCube1(0.2,0.1,0.1,  0.1, 0.05, 0.05);
     glPopMatrix();
 
     //cupboard's handle left sphere
     glPushMatrix();
-    glTranslatef(4.52,1.9,5.91);
+    glTranslatef(4.52,1.9,5.01);
     glScalef(0.02, 0.02, 0.01);
     drawSphere(0.2,0.1,0.1,  0.1, 0.05, 0.05,  10);
     glPopMatrix();
 
     //cupboard's drawer's 1st handle
     glPushMatrix();
-    glTranslatef(4.5,0.7,5.9);
+    glTranslatef(4.5,0.7,5);
     glScalef(0.16, 0.02, 0.01);
     drawCube1(0.2,0.1,0.1,  0.1, 0.05, 0.05);
     glPopMatrix();
 
     //cupboard's drawer's 2nd handle
     glPushMatrix();
-    glTranslatef(4.5,0.25,5.9);
+    glTranslatef(4.5,0.25,5);
     glScalef(0.16, 0.02, 0.01);
     drawCube1(0.2,0.1,0.1,  0.1, 0.05, 0.05);
     glPopMatrix();
-}
-
-void wardrobe()
-{
-    //wardrobe
-    glPushMatrix();
-    glTranslatef(0,0,4);
-    glScalef(0.12, 0.6, 0.4);
-    drawCube1(0.3,0.1,0, 0.15,0.05,0);
-    glPopMatrix();
-
-    //wardrobe's 1st drawer
-   glPushMatrix();
-    glTranslatef(0.36,1.4,4.05);
-   //glRotatef(22, 0,0,1);
-    glScalef(0.0001, 0.11, 0.38);
-    drawCube1(0.5,0.2,0.2, 0.25,0.1,0.1);
-   glPopMatrix();
-
-    //wardrobe's 2nd drawer
-    glPushMatrix();
-    glTranslatef(0.36,1,4.05);
-    //glRotatef(22, 0,0,1);
-    glScalef(0.0001, 0.11, 0.38);
-    drawCube1(0.5,0.2,0.2, 0.25,0.1,0.1);
-    glPopMatrix();
-
-    //wardrobe's 3rd drawer
-    glPushMatrix();
-    glTranslatef(0.36,0.6,4.05);
-    //glRotatef(22, 0,0,1);
-    glScalef(0.0001, 0.11, 0.38);
-    drawCube1(0.5,0.2,0.2, 0.25,0.1,0.1);
-    glPopMatrix();
-
-    //wardrobe's 4th drawer
-    glPushMatrix();
-    glTranslatef(0.36,0.2,4.05);
-    //glRotatef(22, 0,0,1);
-    glScalef(0.0001, 0.11, 0.38);
-    drawCube1(0.5,0.2,0.2, 0.25,0.1,0.1);
-    glPopMatrix();
-
-       //wardrobe's 1st drawer handle
-       glColor3f(0.3,0.1,0);
-       glPushMatrix();
-       glTranslatef(0.37,1.5,4.3);
-       //glRotatef(22, 0,0,1);
-       glScalef(0.01, 0.03, 0.2);
-       drawCube1(0.3,0.1,0, 0.15,0.05,0.0);
-       glPopMatrix();
-
-       //wardrobe's 2nd drawer handle
-       glColor3f(0.3,0.1,0);
-       glPushMatrix();
-       glTranslatef(0.37,1.1,4.3);
-       //glRotatef(22, 0,0,1);
-       glScalef(0.01, 0.03, 0.2);
-    drawCube1(0.3,0.1,0, 0.15,0.05,0.0);
-    glPopMatrix();
-
-       //wardrobe's 3rd drawer handle
-       glColor3f(0.3,0.1,0);
-       glPushMatrix();
-       glTranslatef(0.37,0.7,4.3);
-       //glRotatef(22, 0,0,1);
-       glScalef(0.01, 0.03, 0.2);
-    drawCube1(0.3,0.1,0, 0.15,0.05,0.0);
-    glPopMatrix();
-
-       //wardrobe's 4th drawer handle
-       glColor3f(0.3,0.1,0);
-       glPushMatrix();
-       glTranslatef(0.37,0.3,4.3);
-       //glRotatef(22, 0,0,1);
-       glScalef(0.01, 0.03, 0.2);
-    drawCube1(0.3,0.1,0, 0.15,0.05,0.0);
-    glPopMatrix();
-
 }
 
 void window()
@@ -650,28 +602,28 @@ void window()
     //Window ********************************************
     //window white open
     glPushMatrix();
-    glTranslatef(-0.9,1,8.9); //0.5,1,9.6
+    glTranslatef(-0.9,1,5.9); //0.5,1,9.6
     glScalef(0.0001, .6, .3);
     drawCube1(1.0,1.0,1.0, 0.05,0.05,0.05);
     glPopMatrix();
 
     //window right side corner
     glPushMatrix();
-    glTranslatef(-0.9,1,8.9);
+    glTranslatef(-0.9,1,5.9);
     glScalef(0.04, 0.6, 0.0001);
     drawCube1(0.8,0.6,0.4, 0.4,0.3,0.2);
     glPopMatrix();
 
     //window left side corner
     glPushMatrix();
-    glTranslatef(-0.9,1,9.8);
+    glTranslatef(-0.9,1,6.8);
     glScalef(0.04, 0.6, 0.0001);
     drawCube1(0.8,0.6,0.4, 0.4,0.3,0.2);
     glPopMatrix();
 
     //window upper side corner
     glPushMatrix();
-    glTranslatef(-0.7,2.7,8.9);
+    glTranslatef(-0.7,2.7,5.9);
     glScalef(0.0001, 0.05, 0.4);
     drawCube1(0.7,0.6,0.5,  0.35,0.3,0.25);
     glPopMatrix();
@@ -679,14 +631,14 @@ void window()
 
     //window lower side corner
     glPushMatrix();
-    glTranslatef(-0.8,1.02,8.9);
+    glTranslatef(-0.8,1.02,5.9);
     glScalef(0.0001, 0.02, 0.34);
     drawCube1(0.7,0.6,0.5,  0.35,0.3,0.25);
     glPopMatrix();
 
         //window vertical bar 1
         glPushMatrix();
-        glTranslatef(-0.87,2.1,8.9);
+        glTranslatef(-0.87,2.1,5.9);
         //glRotatef(22, 0,0,1);
         glScalef(0.0001, 0.02, 0.3);
         drawCube1(0.0,0.0,0.0, 0.0,0.0,0.0, 5);
@@ -694,7 +646,7 @@ void window()
 
         //window vertical bar 2
         glPushMatrix();
-        glTranslatef(-0.87,1.6,8.9);
+        glTranslatef(-0.87,1.6,5.9);
         //glRotatef(22, 0,0,1);
         glScalef(0.0001, 0.02, 0.3);
     drawCube1(0.0,0.0,0.0, 0.0,0.0,0.0, 5);
@@ -702,7 +654,7 @@ void window()
 
         //window horizontal bar
         glPushMatrix();
-        glTranslatef(-0.87,1,9.3);
+        glTranslatef(-0.87,1,6.3);
         //glRotatef(22, 0,0,1);
         glScalef(0.0001, 0.6, 0.02);
     drawCube1(0.0,0.0,0.0, 0.0,0.0,0.0, 5);
@@ -833,10 +785,10 @@ void display(void)
     glEnable(GL_TEXTURE_2D); // Enable texture mapping
     room();
     glDisable(GL_TEXTURE_2D);
+    door();
     bed();
     lamp();
     wardrobe();
-    cupboard();
     window();
     lightBulb1();
     glDisable(GL_LIGHTING);
