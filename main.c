@@ -12,7 +12,7 @@
 
 GLboolean redFlag = true, switchOne = false, switchTwo=false, switchLamp=false, amb1=true, diff1=true, spec1=true, amb2=true, diff2=true, spec2=true, amb3=true, diff3=true, spec3=true;
 double windowHeight=800, windowWidth=600;
-double eyeX=7.0, eyeY=2.0, eyeZ=15.0, refX = 0, refY=0,refZ=0;
+double eyeX=3.0, eyeY=3.0, eyeZ=14.0, refX = 0, refY=0,refZ=0;
 double theta = 180.0, y = 1.36, z = 7.97888;
 
 GLuint textureLantai;
@@ -106,18 +106,18 @@ void drawCube()
     glEnd();
 }
 
-void drawCube1(GLfloat difX, GLfloat difY, GLfloat difZ, GLfloat ambX=0, GLfloat ambY=0, GLfloat ambZ=0, GLfloat shine=30)
+void drawCube1(GLfloat difX, GLfloat difY, GLfloat difZ, GLfloat ambX = 0, GLfloat ambY = 0, GLfloat ambZ = 0, GLfloat texScaleX = 1.0f, GLfloat texScaleY = 1.0f, GLfloat shine=30)
 {
     GLfloat no_mat[] = { 0.0, 0.0, 0.0, 1.0 };
     GLfloat mat_ambient[] = { ambX, ambY, ambZ, 1.0 };
     GLfloat mat_diffuse[] = { difX, difY, difZ, 1.0 };
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
-    GLfloat mat_shininess[] = {shine};
+    GLfloat mat_shininess[] = { shine };
 
-    glMaterialfv( GL_FRONT, GL_AMBIENT, mat_ambient);
-    glMaterialfv( GL_FRONT, GL_DIFFUSE, mat_diffuse);
-    glMaterialfv( GL_FRONT, GL_SPECULAR, mat_specular);
-    glMaterialfv( GL_FRONT, GL_SHININESS, mat_shininess);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
     glMaterialfv(GL_FRONT, GL_EMISSION, no_mat);
 
     glBegin(GL_QUADS);
@@ -127,25 +127,23 @@ void drawCube1(GLfloat difX, GLfloat difY, GLfloat difZ, GLfloat ambX=0, GLfloat
         getNormal3p(v_cube[quadIndices[i][0]][0], v_cube[quadIndices[i][0]][1], v_cube[quadIndices[i][0]][2],
                     v_cube[quadIndices[i][1]][0], v_cube[quadIndices[i][1]][1], v_cube[quadIndices[i][1]][2],
                     v_cube[quadIndices[i][2]][0], v_cube[quadIndices[i][2]][1], v_cube[quadIndices[i][2]][2]);
-        
-        if (i == 0 || i == 1) { // Front and back faces
-            glTexCoord2f(0.0f, 0.0f);
-            glVertex3fv(&v_cube[quadIndices[i][0]][0]);
-            glTexCoord2f(10.0f, 0.0f); // Scale the texture coordinates to adjust texture scale
-            glVertex3fv(&v_cube[quadIndices[i][1]][0]);
-            glTexCoord2f(10.0f, 12.0f); // Scale the texture coordinates to adjust texture scale
-            glVertex3fv(&v_cube[quadIndices[i][2]][0]);
-            glTexCoord2f(0.0f, 12.0f); // Translate the texture coordinates to match the translation of the floor
-            glVertex3fv(&v_cube[quadIndices[i][3]][0]);
-        } else { // Top, bottom, left, and right faces
-            glVertex3fv(&v_cube[quadIndices[i][0]][0]);
-            glVertex3fv(&v_cube[quadIndices[i][1]][0]);
-            glVertex3fv(&v_cube[quadIndices[i][2]][0]);
-            glVertex3fv(&v_cube[quadIndices[i][3]][0]);
-        }
+
+        glTexCoord2f(0.0f * texScaleX, 0.0f * texScaleY);
+        glVertex3fv(&v_cube[quadIndices[i][0]][0]);
+
+        glTexCoord2f(1.0f * texScaleX, 0.0f * texScaleY);
+        glVertex3fv(&v_cube[quadIndices[i][1]][0]);
+
+        glTexCoord2f(1.0f * texScaleX, 1.0f * texScaleY);
+        glVertex3fv(&v_cube[quadIndices[i][2]][0]);
+
+        glTexCoord2f(0.0f * texScaleX, 1.0f * texScaleY);
+        glVertex3fv(&v_cube[quadIndices[i][3]][0]);
     }
+
     glEnd();
 }
+
 
 
 static GLfloat v_trapezoid[8][3] =
@@ -346,30 +344,32 @@ void drawSphere(GLfloat difX, GLfloat difY, GLfloat difZ, GLfloat ambX, GLfloat 
 
 void room()
 {
+    glBindTexture(GL_TEXTURE_2D, 0);
     glBindTexture(GL_TEXTURE_2D, textureDinding);
     // right wall
-    //glColor3f(1, 0.8, 0.5);
     glPushMatrix();
     glTranslatef(-1.5,-1,.5);
     glScalef(5, 2, 0.1);
     //drawCube1(1, 0.8, 0.5,  0.5,0.4,0.25);
-    drawCube1(1, 0.8, 0.7,  0.5, 0.4, 0.35);
+    drawCube1(1, 0.8, 0.7,  0.5, 0.4, 0.35, 3.5,4);
     glPopMatrix();
 
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureDinding);
     // left wall
-    //glColor3f(1, 0.8, 0.7);
     glPushMatrix();
     glTranslatef(-4.5,-1,0);
     glScalef(1, 2, 5);
-    drawCube1(1, 0.8, 0.7,  0.5, 0.4, 0.35);
+    drawCube1(1, 0.8, 0.7,  0.5, 0.4, 0.35, 4, 2);
     glPopMatrix();
 
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureDinding);
     // wall besides the right wall
-    //glColor3f(1, 0.8, 0.7);
     glPushMatrix();
-    glTranslatef(8,-1,0);
+    glTranslatef(6,-1,0);
     glScalef(0.2, 2, 5);
-    drawCube1(1, 0.8, 0.7,  0.5, 0.4, 0.35);
+    drawCube1(1, 0.8, 0.7,  0.5, 0.4, 0.35, 2, 4);
     glPopMatrix();
 
     glBindTexture(GL_TEXTURE_2D, 0);
@@ -378,16 +378,16 @@ void room()
      glPushMatrix();
      glTranslatef(-2,5.1,0);
      glScalef(5, 0.1, 7);
-     drawCube1(0.5, 0.1, 0.0,  0.25,0.05,0);
+     drawCube1(0.5, 0.1, 0.0,  0.25,0.05,0, 4, 6);
      glPopMatrix();
 
     // floor
     glBindTexture(GL_TEXTURE_2D, textureLantai);
     glPushMatrix();
-    glScalef(5, 0.1, 7);
+    glScalef(3, 0.1, 4);
     glTranslatef(-1,-5,0); //-1,-5,.5
     //glScalef(5, 0.1, 7);
-    drawCube1(1, 0.9, 0.8,  0.5,0.45,0.4);
+    drawCube1(1, 0.9, 0.8,  0.5,0.45,0.4, 5, 7);
     glPopMatrix();
 }
 
@@ -408,7 +408,6 @@ void bed()
     glPopMatrix();
 
     //pillow right far
-       //glColor3f(0.627, 0.322, 0.176);
     glPushMatrix();
     glTranslatef(0.5,0.5,2.5);
     glRotatef(22, 0,0,1);
@@ -417,7 +416,6 @@ void bed()
     glPopMatrix();
 
     //pillow left near
-    //glColor3f(0.627, 0.322, 0.176);
     glPushMatrix();
     glTranslatef(0.5,0.5,1.5);
     glRotatef(22, 0,0,1);
@@ -426,7 +424,6 @@ void bed()
     glPopMatrix();
 
     //blanket
-    //glColor3f(0.627, 0.322, 0.176);
     glPushMatrix();
     glTranslatef(1.4,0.45,1);
     //glRotatef(0, 0,0,1);
@@ -435,7 +432,6 @@ void bed()
     glPopMatrix();
 
     //blanket side left part
-    //glColor3f(0.627, 0.322, 0.176);
     glPushMatrix();
     glTranslatef(1.4,-0.3,2);
     //glRotatef(0, 0,0,1);
@@ -855,25 +851,25 @@ void myKeyboardFunc( unsigned char key, int x, int y )
     switch ( key )
     {
         case 'w': // move eye point upwards along Y axis
-            eyeY+=1.0;
+            eyeY+=.5;
             break;
         case 's': // move eye point downwards along Y axis
-            eyeY-=1.0;
+            eyeY-=.5;
             break;
         case 'a': // move eye point left along X axis
-            eyeX-=1.0;
+            eyeX-=.5;
             break;
         case 'd': // move eye point right along X axis
-            eyeX+=1.0;
+            eyeX+=.5;
             break;
         case 'o':  //zoom out
-            eyeZ+=1;
+            eyeZ+=.5;
             break;
         case 'i': //zoom in
-            eyeZ-=1;
+            eyeZ-=.5;
             break;
         case 'q': //back to default eye point and ref point
-                eyeX=7.0; eyeY=2.0; eyeZ=15.0;
+                eyeX=3.0; eyeY=3.0; eyeZ=14.0;
                 refX=0.0; refY=0.0; refZ=0.0;
             break;
         case 'j': // move ref point upwards along Y axis
