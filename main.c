@@ -385,37 +385,42 @@ void room()
     glBindTexture(GL_TEXTURE_2D, textureLantai);
     glPushMatrix();
     glScalef(3, 0.1, 4);
-    glTranslatef(-1,-5,0); //-1,-5,.5
+    glTranslatef(-1,-4,0); //-1,-5,.5
     //glScalef(5, 0.1, 7);
     drawCube1(1, 0.9, 0.8,  0.5,0.45,0.4, 5, 7);
     glPopMatrix();
 }
 
 void door(){
+    // door
     glPushMatrix();
     glTranslatef(0,-0.2,3.2);
     glScalef(0.4, 1.05, 0.06);
     drawCube1(0.3,0.2,0.2,  0.25, 0.1, 0.1 );
     glPopMatrix();
 
+    // door top ornament
     glPushMatrix();
     glTranslatef(0.15,1.8,3.15);
     glScalef(0.3, 0.3, 0.1);
     drawCube1(0.2,0.2,0.2,  0.25, 0.1, 0.1 );
     glPopMatrix();
 
+    // door bottom ornament
     glPushMatrix();
     glTranslatef(0.15,0,3.15);
     glScalef(0.3, 0.5, 0.1);
     drawCube1(0.2,0.2,0.2,  0.25, 0.1, 0.1 );
     glPopMatrix();
 
+    // door outside knob
     glPushMatrix();
     glTranslatef(1.1,1.65,3.15);
     glScalef(0.02, 0.02, 0.01);
     drawSphere(0.2,0.1,0.1,  0.1, 0.05, 0.05,  10);
     glPopMatrix();
 
+    // door inside knob
     glPushMatrix();
     glTranslatef(1.1,1.65,3.4);
     glScalef(0.02, 0.02, 0.01);
@@ -472,7 +477,86 @@ void bed()
     glPopMatrix();
 }
 
+void table(){
+    // table top
+    glPushMatrix();
+    glTranslatef(4.7,1,9);
+    glScalef(0.4, 0.03, 0.7);
+    drawCube1(0.5,0.2,0.2,  0.25, 0.1, 0.1 );
+    glPopMatrix();
 
+    // left far table leg
+    glPushMatrix();
+    glTranslatef(4.7,0,9.07); 
+    glScalef(0.02, 0.36, 0.02);
+    drawCube1(0.5,0.2,0.2,  0.25, 0.1, 0.1 );
+    glPopMatrix();
+    
+    //left near table leg
+    glPushMatrix();
+    glTranslatef(4.7,0,11); 
+    glScalef(0.02, 0.36, 0.02);
+    drawCube1(0.5,0.2,0.2,  0.25, 0.1, 0.1 );
+    glPopMatrix();
+    
+    //right far table leg
+    glPushMatrix();
+    glTranslatef(5.8,0,9.07); 
+    glScalef(0.02, 0.36, 0.02);
+    drawCube1(0.5,0.2,0.2,  0.25, 0.1, 0.1 );
+    glPopMatrix();
+
+    //right near table leg
+    glPushMatrix();
+    glTranslatef(5.8,0,11); 
+    glScalef(0.02, 0.36, 0.02);
+    drawCube1(0.5,0.2,0.2,  0.25, 0.1, 0.1 );
+    glPopMatrix();
+}
+
+void chair(){
+    // chair top
+    glPushMatrix();
+    glTranslatef(4.4,0.63,9.75);
+    glScalef(0.2, 0.02, 0.2);
+    drawCube1(0.5,0.2,0.2,  0.25, 0.1, 0.1 );
+    glPopMatrix();
+
+    // left far chair leg
+    glPushMatrix();
+    glTranslatef(4.4,0,9.75); 
+    glScalef(0.02, 0.22, 0.02);
+    drawCube1(0.5,0.2,0.2,  0.25, 0.1, 0.1 );
+    glPopMatrix();
+    
+    //left near chair leg
+    glPushMatrix();
+    glTranslatef(4.4,0,10.29); 
+    glScalef(0.02, 0.22, 0.02);
+    drawCube1(0.5,0.2,0.2,  0.25, 0.1, 0.1 );
+    glPopMatrix();
+    
+    //right far chair leg
+    glPushMatrix();
+    glTranslatef(4.94,0,9.75); 
+    glScalef(0.02, 0.22, 0.02);
+    drawCube1(0.5,0.2,0.2,  0.25, 0.1, 0.1 );
+    glPopMatrix();
+
+    //right near table leg
+    glPushMatrix();
+    glTranslatef(4.94,0,10.29); 
+    glScalef(0.02, 0.22, 0.02);
+    drawCube1(0.5,0.2,0.2,  0.25, 0.1, 0.1 );
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(4.4,0.63,9.75);
+    glRotatef(10, 0,0,1);
+    glScalef(0.02, 0.36, 0.2);
+    drawCube1(0.5,0.2,0.2,  0.25, 0.1, 0.1);
+    glPopMatrix();
+}
 
 void lamp()
 {
@@ -672,7 +756,7 @@ void lightBulb1()
     GLfloat mat_emission[] = {1.000, 1,1, 0.0};
 
     glPushMatrix();
-    glTranslatef (5, 5, 8);
+    glTranslatef (2.5, 5, 7);
     glScalef(0.2, 0.2, 0.2);
     glMaterialfv(GL_FRONT, GL_AMBIENT, no_mat);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
@@ -786,6 +870,8 @@ void display(void)
     room();
     glDisable(GL_TEXTURE_2D);
     door();
+    table();
+    chair();
     bed();
     lamp();
     wardrobe();
