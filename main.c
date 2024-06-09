@@ -17,6 +17,14 @@ double theta = 180.0, y = 1.36, z = 7.97888;
 
 GLuint textureLantai;
 GLuint textureDinding;
+GLuint textureKasur;
+GLuint textureKain;
+GLuint textureKayu1;
+GLuint textureKayu2;
+GLuint textureKayu3;
+GLuint texturePintu;
+GLuint textureAtap;
+GLuint textureBesi1;
 
 GLuint loadTexture(const char *filename) {
     GLuint texture;
@@ -44,6 +52,14 @@ void init(){
     glEnable(GL_TEXTURE_2D);
     textureLantai = loadTexture("lantai.jpg");
     textureDinding = loadTexture("dinding.jpg");
+    textureKasur = loadTexture("kasur.png");
+    textureKain = loadTexture("kain.png");
+    textureKayu1 = loadTexture("kayu1.jpg");
+    textureKayu2 = loadTexture("kayu2.jpg");
+    textureKayu3 = loadTexture("kayu3.jpg");
+    texturePintu = loadTexture("pintu.jpg");
+    textureAtap = loadTexture("atap.jpg");
+    textureBesi1 = loadTexture("besi1.jpg");
 }
 
 static GLfloat v_cube[8][3] =
@@ -348,9 +364,8 @@ void room()
     glBindTexture(GL_TEXTURE_2D, textureDinding);
     // right wall
     glPushMatrix();
-    glTranslatef(-1.5,-1,3.3);
-    glScalef(2.5, 2, 0.001);
-    //drawCube1(1, 0.8, 0.5,  0.5,0.4,0.25);
+    glTranslatef(-1.5,-0.1,3.3);
+    glScalef(2.5, 1.8, 0.001);
     drawCube1(1, 0.8, 0.7,  0.5, 0.4, 0.35, 3.5,4);
     glPopMatrix();
 
@@ -358,8 +373,8 @@ void room()
     glBindTexture(GL_TEXTURE_2D, textureDinding);
     // left wall
     glPushMatrix();
-    glTranslatef(-4.5,-1,0);
-    glScalef(1, 2, 5);
+    glTranslatef(-1.63,-0.1,0);
+    glScalef(0.2, 1.8, 4);
     drawCube1(1, 0.8, 0.7,  0.5, 0.4, 0.35, 4, 2);
     glPopMatrix();
 
@@ -367,70 +382,80 @@ void room()
     glBindTexture(GL_TEXTURE_2D, textureDinding);
     // wall besides the right wall
     glPushMatrix();
-    glTranslatef(6,-1,0);
-    glScalef(0.2, 2, 5);
+    glTranslatef(6,-0.1,0);
+    glScalef(0.2, 1.8, 4);
     drawCube1(1, 0.8, 0.7,  0.5, 0.4, 0.35, 2, 4);
     glPopMatrix();
 
-    glBindTexture(GL_TEXTURE_2D, 0);
-    //ceiling
-     //glColor3f(1.0, 0.9, 0.8);
-     glPushMatrix();
-     glTranslatef(-2,5.1,0);
-     glScalef(5, 0.1, 7);
-     drawCube1(0.5, 0.1, 0.0,  0.25,0.05,0, 4, 6);
-     glPopMatrix();
 
     // floor
+    glBindTexture(GL_TEXTURE_2D, 0);
     glBindTexture(GL_TEXTURE_2D, textureLantai);
     glPushMatrix();
-    glScalef(3, 0.1, 4);
-    glTranslatef(-1,-4,0); //-1,-5,.5
-    //glScalef(5, 0.1, 7);
+    glScalef(2.73, 0.1, 4);
+    glTranslatef(-0.58,-4,0); //-1,-5,.5
     drawCube1(1, 0.9, 0.8,  0.5,0.45,0.4, 5, 7);
     glPopMatrix();
 }
+void atap(){
+    //ceiling
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureAtap);
+     glPushMatrix();
+     glTranslatef(-1.58,5.08,0);
+     glScalef(2.73, 0.1, 4);
+     drawCube1(1, 1, 1,  0.25,0.05,0);
+     glPopMatrix();
 
+}
 void door(){
     // door
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, texturePintu);
     glPushMatrix();
     glTranslatef(0,-0.2,3.2);
     glScalef(0.4, 1.05, 0.06);
-    drawCube1(0.3,0.2,0.2,  0.25, 0.1, 0.1 );
+    drawCube1(0.2,0.2,0.2,  0.25, 0.1, 0.1, 5, 7 );
     glPopMatrix();
 
     // door top ornament
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, texturePintu);
     glPushMatrix();
     glTranslatef(0.15,1.8,3.15);
     glScalef(0.3, 0.3, 0.1);
-    drawCube1(0.2,0.2,0.2,  0.25, 0.1, 0.1 );
+    drawCube1(1,1,1,  0.25, 0.1, 0.1 );
     glPopMatrix();
 
     // door bottom ornament
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, texturePintu);
     glPushMatrix();
     glTranslatef(0.15,0,3.15);
     glScalef(0.3, 0.5, 0.1);
-    drawCube1(0.2,0.2,0.2,  0.25, 0.1, 0.1 );
+    drawCube1(1,1,1,  0.25, 0.1, 0.1 );
     glPopMatrix();
 
     // door outside knob
     glPushMatrix();
     glTranslatef(1.1,1.65,3.15);
     glScalef(0.02, 0.02, 0.01);
-    drawSphere(0.2,0.1,0.1,  0.1, 0.05, 0.05,  10);
+    drawSphere(1,1,1,  0.1, 0.05, 0.05,  50);
     glPopMatrix();
 
     // door inside knob
     glPushMatrix();
     glTranslatef(1.1,1.65,3.4);
     glScalef(0.02, 0.02, 0.01);
-    drawSphere(0.2,0.1,0.1,  0.1, 0.05, 0.05,  10);
+    drawSphere(1,1,1,  0.1, 0.05, 0.05,  50);
     glPopMatrix();
+    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void bed()
 {
     //bed headboard
+    glBindTexture(GL_TEXTURE_2D, textureKayu1);
     glPushMatrix();
     glScalef(0.1, 0.5, 0.9);
     glTranslatef(-10,-0.5,8.2);
@@ -438,54 +463,67 @@ void bed()
     glPopMatrix();
 
     //bed body
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKasur);
     glPushMatrix();
     glScalef(1, 0.2, 0.9); //1, 0.2, 0.9
     glTranslatef(-1,-0.5,8.2);
-    drawCube1(0.824, 0.706, 0.549,   0.412,0.353,0.2745);
+    drawCube1(1, 1, 1,   0.412,0.353,0.2745, 3, 5);
     glPopMatrix();
 
     //pillow right far
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKain);
     glPushMatrix();
     glTranslatef(-0.4,0.5,9);
     glRotatef(22, 0,0,1);
     glScalef(0.1, 0.15, 0.28);
-    drawCube1(0.627, 0.322, 0.176,  0.3135,0.161,0.088);
+    drawCube1(1, 0, 0,  0.3135,0.161,0.088);
     glPopMatrix();
 
     //pillow left near
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKain);
     glPushMatrix();
     glTranslatef(-0.4,0.5,8);
     glRotatef(22, 0,0,1);
     glScalef(0.1, 0.15, 0.28);
-    drawCube1(0.627, 0.322, 0.176,  0.3135,0.161,0.088);
+    drawCube1(1, 0, 0,  0.3135,0.161,0.088);
     glPopMatrix();
 
     //blanket
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKain);
     glPushMatrix();
     glTranslatef(0.5,0.45,7.3);
     //glRotatef(0, 0,0,1);
     glScalef(0.5, 0.05, 0.95);
-    drawCube1(0.627, 0.322, 0.176,  0.3135,0.161,0.088);
+    drawCube1(1, 0, 0,  0.3135,0.161,0.088);
     glPopMatrix();
 
     //blanket side left part
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKain);
     glPushMatrix();
-    glTranslatef(0.5,-0.3,10);
+    glTranslatef(0.5,-0.3,10.01);
     //glRotatef(0, 0,0,1);
-    glScalef(0.5, 0.25, 0.05);
-    drawCube1(0.627, 0.322, 0.176,  0.3135,0.161,0.088);
+    glScalef(0.5, 0.3, 0.05);
+    drawCube1(1, 0, 0,  0.3135,0.161,0.088, 1, 1.5);
     glPopMatrix();
 }
 
 void table(){
     // table top
+    glBindTexture(GL_TEXTURE_2D, textureKayu1);
     glPushMatrix();
     glTranslatef(4.7,1,9);
     glScalef(0.4, 0.03, 0.7);
-    drawCube1(0.5,0.2,0.2,  0.25, 0.1, 0.1 );
+    drawCube1(0.5,0.2,0.2,  0.25, 0.1, 0.1);
     glPopMatrix();
 
     // left far table leg
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKayu1);
     glPushMatrix();
     glTranslatef(4.7,0,9.07); 
     glScalef(0.02, 0.36, 0.02);
@@ -493,6 +531,8 @@ void table(){
     glPopMatrix();
     
     //left near table leg
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKayu1);
     glPushMatrix();
     glTranslatef(4.7,0,11); 
     glScalef(0.02, 0.36, 0.02);
@@ -500,6 +540,8 @@ void table(){
     glPopMatrix();
     
     //right far table leg
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKayu1);
     glPushMatrix();
     glTranslatef(5.8,0,9.07); 
     glScalef(0.02, 0.36, 0.02);
@@ -507,6 +549,8 @@ void table(){
     glPopMatrix();
 
     //right near table leg
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKayu1);
     glPushMatrix();
     glTranslatef(5.8,0,11); 
     glScalef(0.02, 0.36, 0.02);
@@ -516,6 +560,8 @@ void table(){
 
 void chair(){
     // chair top
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKayu3);
     glPushMatrix();
     glTranslatef(4.4,0.63,9.75);
     glScalef(0.2, 0.02, 0.2);
@@ -523,6 +569,8 @@ void chair(){
     glPopMatrix();
 
     // left far chair leg
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKayu3);
     glPushMatrix();
     glTranslatef(4.4,0,9.75); 
     glScalef(0.02, 0.22, 0.02);
@@ -530,6 +578,8 @@ void chair(){
     glPopMatrix();
     
     //left near chair leg
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKayu3);
     glPushMatrix();
     glTranslatef(4.4,0,10.29); 
     glScalef(0.02, 0.22, 0.02);
@@ -537,6 +587,8 @@ void chair(){
     glPopMatrix();
     
     //right far chair leg
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKayu3);
     glPushMatrix();
     glTranslatef(4.94,0,9.75); 
     glScalef(0.02, 0.22, 0.02);
@@ -544,12 +596,17 @@ void chair(){
     glPopMatrix();
 
     //right near table leg
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKayu3);
     glPushMatrix();
     glTranslatef(4.94,0,10.29); 
     glScalef(0.02, 0.22, 0.02);
     drawCube1(0.5,0.2,0.2,  0.25, 0.1, 0.1 );
     glPopMatrix();
 
+    // chair rest
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKayu3);
     glPushMatrix();
     glTranslatef(4.4,0.63,9.75);
     glRotatef(10, 0,0,1);
@@ -560,6 +617,7 @@ void chair(){
 
 void lamp()
 {
+    glBindTexture(GL_TEXTURE_2D, textureBesi1);
     // Lamp base
     glPushMatrix();
     glTranslatef(0.1, 0.02, 10.85);  // Place the base on the floor
@@ -576,11 +634,12 @@ void lamp()
     glPopMatrix();
 
     // Lamp shade
-	glColor3f(1, 1, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKasur);
     glPushMatrix();
     glTranslatef(0.1, 1.5, 10.85);  // Position the shade on top of the stand
     glScalef(0.08, 0.09, 0.08);
-	drawTrapezoid(1, 1, 0, 0, 0, 0.2725);
+	drawTrapezoid(1, 1, 0, 0, 0, 0);
     //drawCube1(0.000, 0.000, 0.545,  0,0,0.2725);
     glPopMatrix();
 }
@@ -588,12 +647,13 @@ void lamp()
 void wardrobe()
 {
     //Cupboard/lemari ************************************************************
-
-        //cupboard
+    //cupboard
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, textureKayu2);
     glPushMatrix();
     glTranslatef(4,0,3.5);
     glScalef(0.5, 1, 0.5);
-    drawCube1(0.5,0.2,0.2,  0.25, 0.1, 0.1 );
+    drawCube1(0.6,0.6,0.6,  0.25, 0.1, 0.1 );
     glPopMatrix();
 
     //cupboard's 1st vertical stripline
@@ -685,6 +745,7 @@ void window()
 {
     //Window ********************************************
     //window white open
+    glBindTexture(GL_TEXTURE_2D, 0);
     glPushMatrix();
     glTranslatef(-0.9,1,5.9); //0.5,1,9.6
     glScalef(0.0001, .6, .3);
@@ -692,6 +753,7 @@ void window()
     glPopMatrix();
 
     //window right side corner
+    glBindTexture(GL_TEXTURE_2D, textureKayu3);
     glPushMatrix();
     glTranslatef(-0.9,1,5.9);
     glScalef(0.04, 0.6, 0.0001);
@@ -707,7 +769,7 @@ void window()
 
     //window upper side corner
     glPushMatrix();
-    glTranslatef(-0.7,2.7,5.9);
+    glTranslatef(-0.8,2.7,5.8);
     glScalef(0.0001, 0.05, 0.4);
     drawCube1(0.7,0.6,0.5,  0.35,0.3,0.25);
     glPopMatrix();
@@ -715,7 +777,7 @@ void window()
 
     //window lower side corner
     glPushMatrix();
-    glTranslatef(-0.8,1.02,5.9);
+    glTranslatef(-0.8,1.02,5.8);
     glScalef(0.0001, 0.02, 0.34);
     drawCube1(0.7,0.6,0.5,  0.35,0.3,0.25);
     glPopMatrix();
@@ -866,18 +928,37 @@ void display(void)
     lightOne();
     lightTwo();
     lampLight();
+    glDisable(GL_TEXTURE_2D);
     glEnable(GL_TEXTURE_2D); // Enable texture mapping
     room();
     glDisable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D); 
+    atap();
+    glDisable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);
     door();
+    glDisable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);
     table();
+    glDisable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);
     chair();
+    glDisable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);
     bed();
+    glDisable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);
     lamp();
+    glDisable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);
     wardrobe();
+    glDisable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);
     window();
+    glDisable(GL_TEXTURE_2D);
     lightBulb1();
     glDisable(GL_LIGHTING);
+    glDisable(GL_TEXTURE_2D);
 
     glFlush();
     glutSwapBuffers();
